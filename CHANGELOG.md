@@ -66,7 +66,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
-## [v0.1.0-dfd0ec1] - 2025-12-05
+## [v0.1.0] - 2025-12-05
 
 ### Added
 - feat: add `<feature-name>`
+
+---
+
+### [v0.1.1] - 2025-12-05
+
+### Added
+- chore: add liara.json configuration file
