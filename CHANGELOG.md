@@ -55,3 +55,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ### Added
 - chore: install Next.js framework
 - chore: configure standalone output
+
+---
+
+## [v0.0.0-741d0b7] - 2025-12-05
+
+### Added
+- `deploy/dev` and `deploy/prod` deployment files: `Dockerfile`, `.env`, and `docker-compose.yaml`.
+- GitHub Actions workflow configuration (`.github/workflows/action.yml`).
