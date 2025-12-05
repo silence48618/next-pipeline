@@ -63,3 +63,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ### Added
 - `deploy/dev` and `deploy/prod` deployment files: `Dockerfile`, `.env`, and `docker-compose.yaml`.
 - GitHub Actions workflow configuration (`.github/workflows/action.yml`).
+
+---
+
+## [v0.1.0-dfd0ec1] - 2025-12-05
+
+### Added
+- feat: add `<feature-name>`
