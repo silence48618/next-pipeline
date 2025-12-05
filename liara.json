@@ -1,0 +1,12 @@
+{
+  "platform": "node",
+  "app":"next-pipeline",
+  "port":3000,
+  "build":{
+    "location":"iran"
+  },
+  "node": {
+    "version": "24"
+  },
+  "disks":[]
+}
