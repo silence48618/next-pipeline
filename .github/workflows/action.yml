@@ -5,8 +5,8 @@ on:
     branches:
       - master
       - develop
-#      - staging
-#      - test
+    #      - staging
+    #      - test
     tags:
       - 'v*'
 
@@ -76,52 +76,27 @@ jobs:
             VERSION=${{ env.VERSION }}
 
       # ----------------------------- DEPLOY TO LIARA
-      - name: Deploy to Liara
+      - name: Install CLI
+        run: npm i -g @liara/cli@9.4.2
+
+      - name: Deploy
         # if: startsWith(github.ref, 'refs/tags/v')
-        if: startsWith(github.ref, 'refs/tags/v') && !contains(github.ref, '-')
+        # if: startsWith(github.ref, 'refs/tags/v') && !contains(github.ref, '-')
         env:
           LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
         run: |
-          npm i -g @liara/cli@7
-
-        # ---------- DEV ENV ----------
-          if [ "${{ github.ref }}" = "refs/heads/develop" ]; then
-            liara deploy \
-              --liara-json="deploy/dev/liara.json" \
-              --dockerfile="deploy/dev/Dockerfile" \
-              --api-token="$LIARA_TOKEN" \
-              --no-app-log
+          if [ ${{ github.ref }} = "refs/heads/develop" ]; then
+            liara deploy --liara-json="deploy/dev/liara.json" --dockerfile="deploy/dev/Dockerfile" --api-token="$LIARA_TOKEN"
           fi
           
-          # ---------- PRODUCTION (Only Tags vX.Y.Z) ----------
           if [[ "${{ github.ref }}" == refs/tags/v* ]] && [[ "${{ github.ref }}" != *-* ]]; then
-            liara deploy \
-              --liara-json="deploy/prod/liara.json" \
-              --dockerfile="deploy/prod/Dockerfile" \
-              --api-token="$LIARA_TOKEN" \
-              --no-app-log
+            liara deploy --liara-json="deploy/prod/liara.json" --dockerfile="deploy/prod/Dockerfile" --api-token="$LIARA_TOKEN"
           fi
-
-          # ---------- TEST ENV ----------
-#          if [ "${{ github.ref }}" = "refs/heads/test" ]; then
-#            liara deploy \
-#              --app="my-test-app" \
-#              --dockerfile="deploy/test/Dockerfile" \
-#              --api-token="$LIARA_TOKEN" \
-#              --no-app-log
-#          fi
-
-    # ---------- STAGING ENV ----------
-#         if [ "${{ github.ref }}" = "refs/heads/staging" ]; then
-#         liara deploy \
-#         --app="my-staging-app" \
-#         --dockerfile="deploy/staging/Dockerfile" \
-#         --api-token="$LIARA_TOKEN" \
-#         --no-app-log
-#         fi
-
-#          liara deploy \
-#            --dockerfile="deploy/prod/Dockerfile" \
-#            --api-token="$LIARA_TOKEN" \
-#            --no-app-logs
-
+          
+          if [ "${{ github.ref }}" = "refs/heads/test" ]; then
+            liara deploy --liara-json="deploy/test/liara.json" --dockerfile="deploy/test/Dockerfile" --api-token="$LIARA_TOKEN"
+          fi
+          
+          if [ "${{ github.ref }}" = "refs/heads/staging" ]; then
+            liara deploy --liara-json="deploy/staging/liara.json" --dockerfile="deploy/staging/Dockerfile" --api-token="$LIARA_TOKEN"
+          fi

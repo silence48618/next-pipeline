@@ -1,10 +1,10 @@
 services:
   ####################### APPLICATION #######################
-  next-pipeline-dev:
-    container_name: next-pipeline-dev
+  next-pipeline-dev.local:
+    container_name: next-pipeline-dev.local
     build:
       context: ../..
-      dockerfile: deploy/dev/Dockerfile
+      dockerfile: deploy/dev.local/Dockerfile
     env_file:
       - .env
     ports:
@@ -14,7 +14,7 @@ services:
     networks:
       - my-network
     profiles:
-      - dev
+      - dev.local
 
 
 networks:

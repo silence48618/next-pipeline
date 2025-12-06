@@ -18,11 +18,8 @@ RUN npm ci
 # Copy project source
 COPY . .
 
-# Build next.js → .next/
-RUN npm run build
-
 # Expose application port
 EXPOSE 3000
 
 # Run Next.js Dev
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]

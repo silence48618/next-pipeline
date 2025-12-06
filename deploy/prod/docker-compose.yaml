@@ -1,6 +1,6 @@
 services:
-  next-pipeline-local-prod:
-    container_name: next-pipeline-local-prod
+  next-pipeline-prod:
+    container_name: next-pipeline-prod
     build:
       context: ../..
       dockerfile: deploy/prod/Dockerfile
