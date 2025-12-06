@@ -3,8 +3,7 @@ FROM node:24.11.1
 
 # Environment variables for dev
 ENV DIR=/app \
-    NODE_ENV=production \
-
+    NODE_ENV=production
 # Set working directory
 WORKDIR $DIR
 
